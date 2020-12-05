@@ -16,8 +16,8 @@ Os elementos do vetor nao sao recebidos pelo usuario.
 #define NTHREADS 2
 
 typedef struct{
-   int* vetor;
-   int comeco, fim; //indices inicial e final de cada metade
+	int* vetor;
+	int comeco, fim; //indices inicial e final de cada metade
 } t_Args;
 
 void* incrementa(void* arg){
@@ -56,29 +56,29 @@ int main(void){
 	//cria as threads
 	for(thread = 0; thread < NTHREADS; thread++){
 		arg = malloc(sizeof(t_Args));
-    	if(arg == NULL){
-    		printf("ERRO: malloc()\n");
-      		exit(-1);
+		if(arg == NULL){
+			printf("ERRO: malloc()\n");
+			exit(-1);
     	}
-    	arg->vetor = vetor;
+		arg->vetor = vetor;
 		arg->comeco = (thread == 0? 0 : N/2);
 		arg->fim = (thread == 0? N/2 : N);
 		
-		if(pthread_create(&tid_sistema[thread], NULL, incrementa, (void*)arg)) {
-      		printf("ERRO: pthread_create()\n");
-      		exit(-1);
-      }
+		if(pthread_create(&tid_sistema[thread], NULL, incrementa, (void*)arg)){
+			printf("ERRO: pthread_create()\n");
+			exit(-1);
+		}
 	}
 	
 	for(thread=0; thread<NTHREADS; thread++){
-    	if(pthread_join(tid_sistema[thread], NULL)){
-        	printf("ERRO: pthread_join()\n");
-        	exit(-1); 
-   		} 
-  	}
+		if(pthread_join(tid_sistema[thread], NULL)){
+			printf("ERRO: pthread_join()\n");
+			exit(-1); 
+		} 
+	}
   	
-  	puts("Vetor incrementado:");
-  	for(int i = 0; i < N; i++)
+	puts("Vetor incrementado:");
+	for(int i = 0; i < N; i++)
 		printf("%d\n", vetor[i]);
 	
 	printf("--Thread principal terminou\n");
