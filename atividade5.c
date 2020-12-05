@@ -59,7 +59,7 @@ int main(void){
 		if(arg == NULL){
 			printf("ERRO: malloc()\n");
 			exit(-1);
-    	}
+		}
 		arg->vetor = vetor;
 		arg->comeco = (thread == 0? 0 : N/2);
 		arg->fim = (thread == 0? N/2 : N);
@@ -70,7 +70,7 @@ int main(void){
 		}
 	}
 	
-	for(thread=0; thread<NTHREADS; thread++){
+	for(thread = 0; thread < NTHREADS; thread++){
 		if(pthread_join(tid_sistema[thread], NULL)){
 			printf("ERRO: pthread_join()\n");
 			exit(-1); 
