@@ -6,7 +6,7 @@ O programa soma todos os elementos de um vetor por 1 usando 2 threads. Cada thre
 Exemplo:
 Com um vetor com 20 elementos, uma thread somaria os elementos no intervalo [0,9], enquanto a outra lidaria com o intervalo [10,19].
 
-Os elementos do vetor nao sao recebidos pelo usuario.
+Os elementos do vetor nao sao recebidos pelo usuario, sao gerados pseudoaleatoriamente.
 */
 
 #include <stdio.h>
